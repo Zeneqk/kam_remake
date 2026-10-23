@@ -11,12 +11,11 @@ jobs:
     - name: Pobranie kodu źródłowego
       uses: actions/checkout@v4
 
-    - name: Pobranie i instalacja kompilatora Free Pascal
-      shell: powershell
+    - name: Instalacja kompilatora Free Pascal przez Chocolatey
       run: |
-        Invoke-WebRequest -Uri "https://sourceforge.net" -OutFile "fpc.zip"
-        Expand-Archive -Path "fpc.zip" -DestinationPath "C:\fpc"
-        echo "C:\fpc\fpc\bin\i386-win32" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+        choco install fpc -y
+        echo "C:\tools\fpc\bin\i386-win32" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+      shell: powershell
 
     - name: Kompilacja pliku wykonywalnego
       run: |
