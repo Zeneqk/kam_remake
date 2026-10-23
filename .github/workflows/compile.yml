@@ -11,11 +11,10 @@ jobs:
     - name: Pobranie kodu źródłowego
       uses: actions/checkout@v4
 
-    - name: Instalacja kompilatora Free Pascal przez Chocolatey
-      run: |
-        choco install fpc -y
-        echo "C:\tools\fpc\bin\i386-win32" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-      shell: powershell
+    - name: Instalacja kompilatora Free Pascal (FPC)
+      uses: pascal-actions/setup-fpc@v1
+      with:
+        fpc-version: '3.2.2'
 
     - name: Kompilacja pliku wykonywalnego
       run: |
@@ -27,3 +26,4 @@ jobs:
       with:
         name: Moj_Czysty_Plik_Gry
         path: src/KaM_Remake.exe
+
