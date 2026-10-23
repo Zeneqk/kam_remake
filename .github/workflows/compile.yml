@@ -1,0 +1,28 @@
+name: Kompilacja KaM Remake
+
+on:
+  workflow_dispatch: # Pozwala uruchomić kompilację ręcznie jednym przyciskiem
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+    - name: Pobranie kodu źródłowego
+      uses: actions/checkout@v4
+
+    - name: Instalacja kompilatora Free Pascal (FPC)
+      uses: fpc-actions/setup-fpc@v1
+      with:
+        fpc-version: '3.2.2'
+
+    - name: Kompilacja pliku wykonywalnego
+      run: |
+        cd src
+        fpc -Mdelphi -O3 -Sg -Si KaM_Remake.dpr
+
+    - name: Zapisanie gotowego pliku .exe do pobrania
+      uses: actions/artifacts@v4
+      with:
+        name: Moja_Wlasna_Wersja_KaM_Remake
+        path: src/KaM_Remake.exe
