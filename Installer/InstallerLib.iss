@@ -83,9 +83,9 @@ Filename: "{app}\uninst_clean.bat"; Flags: runhidden
 
 [Code]
 
-#ifdef CheckKaM
-#include "CheckKaM.iss"
-#endif
+;#ifdef CheckKaM
+;#include "CheckKaM.iss"
+;#endif
 
 procedure InitializeWizard;
 var Diff: Integer;
