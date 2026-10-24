@@ -12,9 +12,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Instalacja kompilatora Free Pascal (FPC)
-        uses: pascal-actions/setup-fpc@v1
+        uses: cwbudde/action-fpc-lazarus@v1
         with:
           fpc-version: '3.2.2'
+          lazarus-version: 'dist' # Pobiera tylko stabilne FPC bez instalowania pełnego środowiska Lazarus IDE
 
       - name: Kompilacja pliku wykonywalnego
         run: |
