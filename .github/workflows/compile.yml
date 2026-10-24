@@ -8,22 +8,21 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Pobranie kodu źródłowego
-      uses: actions/checkout@v4
+      - name: Pobranie kodu źródłowego
+        uses: actions/checkout@v4
 
-    - name: Instalacja kompilatora Free Pascal (FPC)
-      uses: pascal-actions/setup-fpc@v1
-      with:
-        fpc-version: '3.2.2'
+      - name: Instalacja kompilatora Free Pascal (FPC)
+        uses: pascal-actions/setup-fpc@v1
+        with:
+          fpc-version: '3.2.2'
 
-    - name: Kompilacja pliku wykonywalnego
-      run: |
-        cd src
-        fpc -Mdelphi -O3 -Sg -Si KaM_Remake.dpr
+      - name: Kompilacja pliku wykonywalnego
+        run: |
+          cd src
+          fpc -Mdelphi -O3 -Sg -Si KaM_Remake.dpr
 
-    - name: Zapisanie gotowego pliku .exe do pobrania
-      uses: actions/upload-artifact@v4
-      with:
-        name: Moj_Czysty_Plik_Gry
-        path: src/KaM_Remake.exe
-
+      - name: Zapisanie gotowego pliku .exe do pobrania
+        uses: actions/upload-artifact@v4
+        with:
+          name: Moj_Czysty_Plik_Gry
+          path: src/KaM_Remake.exe
